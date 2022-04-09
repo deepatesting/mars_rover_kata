@@ -26,7 +26,7 @@ Read more [here](/docs/MarsRoverMissionInstructions.pdf) about the instructions 
 
 ### UnitTests
 
-cd to the project root folder in the command line
+cd to the project root folder in the command line.
 
 Run ``mvn test``
 
