@@ -11,4 +11,11 @@ public class Rover {
     public String getPosition(){
         return position;
     }
+
+    public String moveToDirection(String command){
+        if(command == "M"){
+            return "0:1:N";
+        }
+        return "";
+    }
 }

@@ -21,4 +21,17 @@ public class RoverTest {
         Assertions.assertEquals(initialPosition, result);
     }
 
+    @Test
+    public void checkMoveForwardFirstTest(){
+        //Arrange
+        Rover rover = new Rover("0:0:N");
+
+        //Act
+        String result = rover.moveToDirection("M");
+
+        //Assert
+        Assertions.assertEquals("0:1:N", result);
+    }
+
+
 }
