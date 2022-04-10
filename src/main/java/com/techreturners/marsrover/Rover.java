@@ -2,16 +2,20 @@ package com.techreturners.marsrover;
 
 public class Rover {
 
-    private String initialPosition = "";
+    private Plateau plateau;
     private Position position;
+    private Direction direction;
 
-    public Rover(String initialPosition){
+    private String initialPosition = "";
+    public Rover(Plateau plateau, String initialPosition){
+        this.plateau = plateau;
         this.initialPosition = initialPosition;
     }
 
     public String getPosition(){
         return initialPosition;
     }
+
 
     public String ExecuteMoves(String stringCommands){
 
@@ -26,7 +30,7 @@ public class Rover {
         String currentDirectionName = DirectionList.getNameByCode(currentDirection);
 
         //Create Direction object with current direction name 'NORTH';
-        Direction direction = new Direction(currentDirectionName);
+        direction = new Direction(currentDirectionName);
 
         char[] commands = stringCommands.toCharArray();
 

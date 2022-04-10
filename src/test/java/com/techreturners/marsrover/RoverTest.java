@@ -1,6 +1,7 @@
 package com.techreturners.marsrover;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,12 +13,15 @@ import java.util.stream.Stream;
 
 public class RoverTest {
 
+    private Plateau plateau = new Plateau(5, 5);
+
+
     @ParameterizedTest
     @ValueSource(strings = {"0:0:N",
                             "0:1:N"})
     public void checkFirstTest(String initialPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.getPosition();
@@ -34,7 +38,7 @@ public class RoverTest {
                 "2:2:S, 2:1:S"} )
     public void checkWithMoveForwardMoreTests(String initialPosition, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.ExecuteMoves("M");
@@ -48,7 +52,7 @@ public class RoverTest {
     @MethodSource("inputInstructionsForRIGHT")
     public void checkWithCommandToMoveRight(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.ExecuteMoves(command);
@@ -69,7 +73,7 @@ public class RoverTest {
     @MethodSource("inputInstructionsForLEFT")
     public void checkWithCommandToMoveLeft(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.ExecuteMoves(command);
@@ -90,7 +94,7 @@ public class RoverTest {
     @MethodSource("input1InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF1(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.ExecuteMoves(command);
@@ -117,7 +121,7 @@ public class RoverTest {
     @MethodSource("input2InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF2(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(initialPosition);
+        Rover rover = new Rover(plateau, initialPosition);
 
         //Act
         String result = rover.ExecuteMoves(command);
