@@ -15,16 +15,17 @@ public class RoverTest {
 
     private Plateau plateau = new Plateau(5, 5);
 
-
     @ParameterizedTest
     @ValueSource(strings = {"0:0:N",
                             "0:1:N"})
     public void checkFirstTest(String initialPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.getPosition();
+        String result = roverMain.getPosition();
 
         //Assert
         Assertions.assertEquals(initialPosition, result);
@@ -38,10 +39,12 @@ public class RoverTest {
                 "2:2:S, 2:1:S"} )
     public void checkWithMoveForwardMoreTests(String initialPosition, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.ExecuteMoves("M");
+        String result = roverMain.ExecuteMoves("M");
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -52,10 +55,12 @@ public class RoverTest {
     @MethodSource("inputInstructionsForRIGHT")
     public void checkWithCommandToMoveRight(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.ExecuteMoves(command);
+        String result = roverMain.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -73,10 +78,12 @@ public class RoverTest {
     @MethodSource("inputInstructionsForLEFT")
     public void checkWithCommandToMoveLeft(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.ExecuteMoves(command);
+        String result = roverMain.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -94,10 +101,12 @@ public class RoverTest {
     @MethodSource("input1InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF1(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.ExecuteMoves(command);
+        String result = roverMain.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -121,10 +130,12 @@ public class RoverTest {
     @MethodSource("input2InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF2(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover(plateau, initialPosition);
+        Rover rover = new Rover("RAGY");
+
+        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
 
         //Act
-        String result = rover.ExecuteMoves(command);
+        String result = roverMain.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
