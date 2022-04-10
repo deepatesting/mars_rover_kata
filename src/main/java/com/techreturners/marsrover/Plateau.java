@@ -19,11 +19,11 @@ public class Plateau {
         return upperBoundY;
     }
 
-    public int getLowerBoundCoordinateX() {
+    public int getLowerBoundX() {
         return lowerBoundX;
     }
 
-    public int getLowerBoundCoordinateY() {
+    public int getLowerBoundY() {
         return lowerBoundY;
     }
 }
