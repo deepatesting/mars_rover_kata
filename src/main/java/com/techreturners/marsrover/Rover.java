@@ -13,14 +13,12 @@ public class Rover {
         return initialPosition;
     }
 
-    public String moveToDirection(String stringCommands){
+    public String ExecuteMoves(String stringCommands){
 
         String[] initialState= initialPosition.split(":");
         int x = Integer.parseInt(initialState[0]);
         int y = Integer.parseInt(initialState[1]);
         String currentDirection = initialState[2];
-
-        char[] commands = stringCommands.toCharArray();
 
         position = new Position(x, y);
 
@@ -29,6 +27,8 @@ public class Rover {
 
         //Create Direction object with current direction name 'NORTH';
         Direction direction = new Direction(currentDirectionName);
+
+        char[] commands = stringCommands.toCharArray();
 
         for(char c : commands) {
 

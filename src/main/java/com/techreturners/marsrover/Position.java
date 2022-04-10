@@ -16,7 +16,7 @@ public class Position {
     public int getY() {
         return Y;
     }
-/*
+
     public void setX(int X) {
          this.X = X;
     }
@@ -24,7 +24,5 @@ public class Position {
     public void setY(int Y) {
         this.Y = Y;
     }
-
- */
 
 }
