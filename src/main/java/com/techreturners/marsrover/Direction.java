@@ -14,11 +14,13 @@ public class Direction {
 
         DirectionList[] directionList = DirectionList.values();
 
-        for (DirectionList value : directionList)
+        for (DirectionList valueList : directionList)
         {
-            if ( value.equals(currentDirection) ) {
-                name = value.name();
-                System.out.println();
+            //System.out.println(valueList);
+
+            if ( (valueList.getValue()).equals(currentDirection) ) {
+                name = valueList.name();
+                System.out.println(name);
             }
         }
 
