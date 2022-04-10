@@ -2,39 +2,28 @@ package com.techreturners.marsrover;
 
 public class Rover {
 
-    private String position = "";
+    private String initialPosition = "";
+    private Position position;
 
-    public Rover(String position){
-        this.position = position;
+    public Rover(String initialPosition){
+        this.initialPosition = initialPosition;
     }
 
     public String getPosition(){
-        return position;
+        return initialPosition;
     }
 
     public String moveToDirection(String command){
-        String[] initialPosition = position.split(":");
-        int x = Integer.parseInt(initialPosition[0]);
-        int y = Integer.parseInt(initialPosition[1]);
-        String direction = initialPosition[2];
+        String[] initialState= initialPosition.split(":");
+        int x = Integer.parseInt(initialState[0]);
+        int y = Integer.parseInt(initialState[1]);
+        position = new Position(x, y);
+        Direction direction = new Direction();
+        String currentDirection = initialState[2];
 
         if(command == "M") {
-            switch(direction)
-            {
-                case "N":
-                    y++;
-                    break;
-                case "E":
-                    x++;
-                    break;
-                case "S":
-                    y--;
-                    break;
-                case "W":
-                    x--;
-                    break;
-            }
-            return (x + ":" + y + ":" + direction);
+            position = direction.moveForward(position,  currentDirection);
+            return (position.getX() + ":" + position.getY() + ":" + currentDirection);
         }
 
         return "";
