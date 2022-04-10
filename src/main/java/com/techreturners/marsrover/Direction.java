@@ -12,13 +12,17 @@ public class Direction {
         return directionValue;
     }
 
-    public Position moveForward(Position position, String currentDirectionName){
+    public void setDirectionValue(String directionValue) {
+        this.directionValue =  directionValue;
+    }
+
+    public Position moveForward(Position position){
 
         int x = position.getX();
         int y = position.getY();
 
 
-        switch(currentDirectionName)
+        switch(directionValue)
         {
             case "NORTH":
                 y++;
@@ -38,9 +42,9 @@ public class Direction {
         return new Position(x,y);
     }
 
-    public Direction moveRight(String currentDirectionName){
+    public Direction moveRight(){
 
-        switch(currentDirectionName)
+        switch(directionValue)
         {
             case "NORTH":
                 directionValue = "EAST";
@@ -60,9 +64,9 @@ public class Direction {
         return new Direction(directionValue);
     }
 
-    public Direction moveLeft(String currentDirectionName){
+    public Direction moveLeft(){
 
-        switch(currentDirectionName)
+        switch(directionValue)
         {
             case "NORTH":
                 directionValue = "WEST";

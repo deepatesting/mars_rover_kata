@@ -83,7 +83,7 @@ public class RoverTest {
         return Stream.of(
                 Arguments.of("0:1:N", "L", "0:1:W"),
                 Arguments.of("0:1:E", "L", "0:1:N"),
-                Arguments.of("0:1:S", "L", "0:1:E")
+                Arguments.of("0:1:S", "LL", "0:1:N")
         );
     }
 }
