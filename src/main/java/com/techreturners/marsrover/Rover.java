@@ -18,9 +18,25 @@ public class Rover {
         int y = Integer.parseInt(initialPosition[1]);
         String direction = initialPosition[2];
 
-        if(command == "M"){
-            return (x+":"+(y+1)+":"+direction);
+        if(command == "M") {
+            switch(direction)
+            {
+                case "N":
+                    y++;
+                    break;
+                case "E":
+                    x++;
+                    break;
+                case "S":
+                    y--;
+                    break;
+                case "W":
+                    x--;
+                    break;
+            }
+            return (x + ":" + y + ":" + direction);
         }
+
         return "";
     }
 }

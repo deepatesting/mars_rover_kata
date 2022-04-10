@@ -23,8 +23,11 @@ public class RoverTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0:0:N, 0:1:N",
-                "0:1:N, 0:2:N"})
+    @CsvSource( {"0:0:N, 0:1:N",
+                "0:1:N, 0:2:N",
+                "0:1:E, 1:1:E",
+                "1:1:W, 0:1:W",
+                "2:2:S, 2:1:S"} )
     public void checkMoveForwardFirstTest(String initialPosition, String expectedPosition){
         //Arrange
         Rover rover = new Rover(initialPosition);
