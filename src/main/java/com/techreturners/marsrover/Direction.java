@@ -2,29 +2,23 @@ package com.techreturners.marsrover;
 
 public class Direction {
 
+    private String directionValue = "";
 
-    public Direction(){
-
+    public Direction(String directionValue){
+        this.directionValue = directionValue;
     }
-    public Position moveForward(Position position, String currentDirection){
+
+    public String getDirectionValue() {
+        return directionValue;
+    }
+
+    public Position moveForward(Position position, String currentDirectionName){
 
         int x = position.getX();
         int y = position.getY();
-        String name = "";
 
-        DirectionList[] directionList = DirectionList.values();
 
-        for (DirectionList valueList : directionList)
-        {
-            //System.out.println(valueList);
-
-            if ( (valueList.getValue()).equals(currentDirection) ) {
-                name = valueList.name();
-                System.out.println(name);
-            }
-        }
-
-        switch(name)
+        switch(currentDirectionName)
         {
             case "NORTH":
                 y++;
@@ -42,5 +36,27 @@ public class Direction {
                 throw new RuntimeException("Should not get here!");
         }
         return new Position(x,y);
+    }
+
+    public Direction moveRight(String currentDirectionName){
+
+        switch(currentDirectionName)
+        {
+            case "NORTH":
+                directionValue = "EAST";
+                break;
+            case "EAST":
+                directionValue = "SOUTH";
+                break;
+            case "SOUTH":
+                directionValue = "WEST";
+                break;
+            case "WEST":
+                directionValue = "NORTH";
+                break;
+            default:
+                throw new RuntimeException("Should not get here!");
+        }
+        return new Direction(directionValue);
     }
 }
