@@ -3,6 +3,7 @@ package com.techreturners.marsrover;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class RoverTest {
@@ -21,17 +22,20 @@ public class RoverTest {
         Assertions.assertEquals(initialPosition, result);
     }
 
-    @Test
-    public void checkMoveForwardFirstTest(){
+    @ParameterizedTest
+    @CsvSource({"0:0:N, 0:1:N",
+                "0:1:N, 0:2:N"})
+    public void checkMoveForwardFirstTest(String initialPosition, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("0:0:N");
+        Rover rover = new Rover(initialPosition);
 
         //Act
         String result = rover.moveToDirection("M");
 
         //Assert
-        Assertions.assertEquals("0:1:N", result);
+        Assertions.assertEquals(expectedPosition, result);
     }
+
 
 
 }
