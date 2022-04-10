@@ -13,7 +13,7 @@ public class Rover {
         return initialPosition;
     }
 
-    public String moveToDirection(String command){
+    public String moveToDirection(String stringCommands){
 
         String[] initialState= initialPosition.split(":");
         int x = Integer.parseInt(initialState[0]);
@@ -27,20 +27,33 @@ public class Rover {
         //Get Name by Code - DirectionList - For each direction
         String currentDirectionName = DirectionList.getNameByCode(currentDirection);
 
-        if(command == "M") {
-            position = direction.moveForward(position,  currentDirectionName);
-            return (position.getX() + ":" + position.getY() + ":" + currentDirection);
+        char[] commands = stringCommands.toCharArray();
+
+        for(char c : commands) {
+
+            if ( c == 'M' ) {
+                position = direction.moveForward(position, currentDirectionName);
+                return (position.getX() + ":" + position.getY() + ":" + currentDirection);
+            }
+            else if (c == 'R') {
+                direction = direction.moveRight(currentDirectionName);
+
+                //Get Code by Name - DirectionList - For directions
+                DirectionList directionList1 = DirectionList.valueOf(direction.getDirectionValue());
+
+                return (position.getX() + ":" + position.getY() + ":"
+                        + directionList1.getValue());
+            }
+            else if (c == 'L') {
+                direction = direction.moveLeft(currentDirectionName);
+
+                //Get Code by Name - DirectionList - For directions
+                DirectionList directionList1 = DirectionList.valueOf(direction.getDirectionValue());
+
+                return (position.getX() + ":" + position.getY() + ":"
+                        + directionList1.getValue());
+            }
         }
-        else if(command == "R") {
-            direction = direction.moveRight(currentDirectionName);
-
-            //Get Code by Name - DirectionList - For directions
-            DirectionList directionList1 = DirectionList.valueOf(direction.getDirectionValue());
-
-            return (position.getX() + ":" + position.getY() + ":"
-                    + directionList1.getValue());
-        }
-
         return "";
     }
 }

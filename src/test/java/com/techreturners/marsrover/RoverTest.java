@@ -46,7 +46,7 @@ public class RoverTest {
 
 
     @ParameterizedTest
-    @MethodSource("inputInstructions")
+    @MethodSource("inputInstructionsForRIGHT")
     public void checkWithCommandToMoveRight(String initialPosition, String command, String expectedPosition){
         //Arrange
         Rover rover = new Rover(initialPosition);
@@ -58,11 +58,32 @@ public class RoverTest {
         Assertions.assertEquals(expectedPosition, result);
     }
 
-    private static Stream<Arguments> inputInstructions() {
+    private static Stream<Arguments> inputInstructionsForRIGHT() {
         return Stream.of(
                 Arguments.of("0:1:N", "R", "0:1:E"),
                 Arguments.of("0:1:E", "R", "0:1:S"),
                 Arguments.of("0:1:S", "R", "0:1:W")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("inputInstructionsForLEFT")
+    public void checkWithCommandToMoveLeft(String initialPosition, String command, String expectedPosition){
+        //Arrange
+        Rover rover = new Rover(initialPosition);
+
+        //Act
+        String result = rover.moveToDirection(command);
+
+        //Assert
+        Assertions.assertEquals(expectedPosition, result);
+    }
+
+    private static Stream<Arguments> inputInstructionsForLEFT() {
+        return Stream.of(
+                Arguments.of("0:1:N", "L", "0:1:W"),
+                Arguments.of("0:1:E", "L", "0:1:N"),
+                Arguments.of("0:1:S", "L", "0:1:E")
         );
     }
 }

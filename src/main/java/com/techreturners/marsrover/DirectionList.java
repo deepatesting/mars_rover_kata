@@ -14,13 +14,11 @@ public enum DirectionList {
         }
 
         public static String getNameByCode(String value){
-                System.out.println(value);
+
                 for(DirectionList e : DirectionList.values()){
                         if(e.value.equals(value)){
-                                System.out.println(e.name());
                                 return e.name();
                         }
-
                 }
                 return null;
         }

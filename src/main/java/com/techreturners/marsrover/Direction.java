@@ -59,4 +59,26 @@ public class Direction {
         }
         return new Direction(directionValue);
     }
+
+    public Direction moveLeft(String currentDirectionName){
+
+        switch(currentDirectionName)
+        {
+            case "NORTH":
+                directionValue = "WEST";
+                break;
+            case "EAST":
+                directionValue = "NORTH";
+                break;
+            case "SOUTH":
+                directionValue = "EAST";
+                break;
+            case "WEST":
+                directionValue = "SOUTH";
+                break;
+            default:
+                throw new RuntimeException("Should not get here!");
+        }
+        return new Direction(directionValue);
+    }
 }
