@@ -1,7 +1,6 @@
 package com.techreturners.marsrover;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,17 +14,27 @@ public class RoverTest {
 
     private Plateau plateau = new Plateau(5, 5);
 
+    @Test
+    public void checkRoverOutsidePlateauBoundaryException(){
+        //Arrange
+        Rover rover = new Rover("RAGY", plateau, "6:6:N");
+
+        //Act
+        Exception e = Assertions.assertThrows(RuntimeException.class, () -> rover.placeRover());
+
+        //Assert
+        Assertions.assertEquals("Rover cannot be placed out of Bounds of the plateau!", e.getMessage());
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"0:0:N",
                             "0:1:N"})
-    public void checkFirstTest(String initialPosition){
+    public void checkWithFirstTest(String initialPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.getPosition();
+        String result = rover.getInitialPosition();
 
         //Assert
         Assertions.assertEquals(initialPosition, result);
@@ -39,12 +48,10 @@ public class RoverTest {
                 "2:2:S, 2:1:S"} )
     public void checkWithMoveForwardMoreTests(String initialPosition, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.ExecuteMoves("M");
+        String result = rover.ExecuteMoves("M");
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -55,12 +62,10 @@ public class RoverTest {
     @MethodSource("inputInstructionsForRIGHT")
     public void checkWithCommandToMoveRight(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.ExecuteMoves(command);
+        String result = rover.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -78,12 +83,10 @@ public class RoverTest {
     @MethodSource("inputInstructionsForLEFT")
     public void checkWithCommandToMoveLeft(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.ExecuteMoves(command);
+        String result = rover.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -101,12 +104,10 @@ public class RoverTest {
     @MethodSource("input1InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF1(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.ExecuteMoves(command);
+        String result = rover.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);
@@ -130,12 +131,10 @@ public class RoverTest {
     @MethodSource("input2InstructionsForMIXED")
     public void checkWithCommandToMoveDIFF2(String initialPosition, String command, String expectedPosition){
         //Arrange
-        Rover rover = new Rover("RAGY");
-
-        MarsRoverMain roverMain = new MarsRoverMain(plateau, initialPosition);
+        Rover rover = new Rover("RAGY", plateau, initialPosition);
 
         //Act
-        String result = roverMain.ExecuteMoves(command);
+        String result = rover.ExecuteMoves(command);
 
         //Assert
         Assertions.assertEquals(expectedPosition, result);

@@ -22,7 +22,7 @@ public class Direction {
         int y = position.getY();
 
 
-        switch(directionValue)
+        switch(getDirectionValue())
         {
             case "NORTH":
                 y++;
@@ -42,9 +42,35 @@ public class Direction {
         return new Position(x,y);
     }
 
+    public Position moveBack(Position position){
+
+        int x = position.getX();
+        int y = position.getY();
+
+
+        switch(getDirectionValue())
+        {
+            case "NORTH":
+                y--;
+                break;
+            case "EAST":
+                x--;
+                break;
+            case "SOUTH":
+                y++;
+                break;
+            case "WEST":
+                x++;
+                break;
+            default:
+                throw new RuntimeException("Should not get here!");
+        }
+        return new Position(x,y);
+    }
+
     public Direction moveRight(){
 
-        switch(directionValue)
+        switch(getDirectionValue())
         {
             case "NORTH":
                 directionValue = "EAST";
@@ -66,7 +92,7 @@ public class Direction {
 
     public Direction moveLeft(){
 
-        switch(directionValue)
+        switch(getDirectionValue())
         {
             case "NORTH":
                 directionValue = "WEST";

@@ -1,14 +1,23 @@
 package com.techreturners.marsrover;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Plateau {
     private final int lowerBoundX = 0;
     private final int lowerBoundY = 0;
     private final int upperBoundX;
     private final int upperBoundY;
 
+    private List<Rover> rovers = new ArrayList<Rover>();
+
     public Plateau(int upperBoundCoordinateX, int upperBoundCoordinateY) {
         this.upperBoundX = upperBoundCoordinateX;
         this.upperBoundY = upperBoundCoordinateY;
+    }
+
+    public void addRover(Rover rover) {
+        rovers.add(rover);
     }
 
     public int getUpperBoundX() {
@@ -26,4 +35,14 @@ public class Plateau {
     public int getLowerBoundY() {
         return lowerBoundY;
     }
+
+    public boolean isOccupied(Position position) {
+        for (Rover r : rovers) {
+            if (r.getPosition() == position) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
