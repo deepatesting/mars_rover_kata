@@ -9,7 +9,7 @@ public class Plateau {
     private final int upperBoundX;
     private final int upperBoundY;
 
-    private List<Rover> rovers = new ArrayList<Rover>();
+    public List<Rover> rovers = new ArrayList<Rover>();
 
     public Plateau(int upperBoundCoordinateX, int upperBoundCoordinateY) {
         this.upperBoundX = upperBoundCoordinateX;
@@ -37,10 +37,18 @@ public class Plateau {
     }
 
     public boolean isOccupied(Position position) {
+        System.out.println(rovers.size());
         for (Rover r : rovers) {
-            if (r.getPosition() == position) {
+            System.out.println(r.getName());
+            System.out.println("X" + r.getPosition().getX());
+            System.out.println("Y" + r.getPosition().getY());
+            System.out.println(r.direction.getDirectionValue());
+            if ( (r.getPosition().getX() == position.getX()) &&
+                    (r.getPosition().getY() == position.getY()) )
                 return true;
-            }
+            /*if (r.hasPosition(position)) {
+                return true;
+            }*/
         }
         return false;
     }

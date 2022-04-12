@@ -37,16 +37,18 @@ public class Rover {
         return initialPosition;
     }
 
-    public boolean validateLocation(Plateau plateau, Position position) {
+    public void validateLocation() {
         if (position.getX() > plateau.getUpperBoundX()
                 || position.getY() > plateau.getUpperBoundY()
                 || position.getX() < plateau.getLowerBoundX()
                 || position.getY() < plateau.getLowerBoundY()) {
-            return false;
+            throw new RoverNotPlacedException();
         }
-        else
-            return true;
     }
+
+   /* public boolean hasPosition(Position pos) {
+        return position.isEqual(pos);
+    }*/
 
     public void placeRover() {
         String[] initialState = initialPosition.split(":");
@@ -62,11 +64,12 @@ public class Rover {
         //Create Direction object with current direction name 'NORTH';
         direction = new Direction(currentDirectionName);
 
-        if(!validateLocation(plateau, position)) {
-            throw new RoverNotPlacedException();
-        }
+        validateLocation();
+
+        System.out.println("Rover size" + plateau.rovers.size());
 
         if (plateau.isOccupied(position)) {
+            System.out.println("HHH");
             throw new PositionOccupiedException();
         }
 

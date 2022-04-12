@@ -9,6 +9,15 @@ public class Position {
         this.Y = y;
     }
 
+    /*public Position(Position other) {
+        this.X = other.X;
+        this.Y = other.Y;
+    }
+
+    public boolean isEqual(Position other) {
+        return X == other.X && Y == other.Y;
+    }*/
+
     public int getX() {
         return X;
     }

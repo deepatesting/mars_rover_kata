@@ -14,6 +14,7 @@ public class RoverTest {
 
     private Plateau plateau = new Plateau(5, 5);
 
+
     @Test
     public void checkRoverOutsidePlateauBoundaryException(){
         //Arrange
@@ -24,6 +25,23 @@ public class RoverTest {
 
         //Assert
         Assertions.assertEquals("Rover cannot be placed out of Bounds of the plateau!", e.getMessage());
+    }
+
+    @Test
+    public void checkRoverPositionOccupiedException(){
+        //Arrange
+        Rover rover1 = new Rover("RAGY", plateau, "1:1:N");
+        Rover rover2 = new Rover("DEEPS", plateau, "0:1:N");
+        Rover rover3 = new Rover("DEEPSSSS", plateau, "0:1:N");
+
+        //Act
+        rover1.placeRover();
+        rover2.placeRover();
+
+        Exception e = Assertions.assertThrows(RuntimeException.class, () ->  rover3.placeRover());
+
+        //Assert
+        Assertions.assertEquals("Position already occupied by a rover!", e.getMessage());
     }
 
     @ParameterizedTest
