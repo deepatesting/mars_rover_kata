@@ -172,4 +172,19 @@ public class RoverTest {
                 Arguments.of("3:3:E", "MMRMMRMRRM", "5:1:E")
         );
     }
+
+    @Test
+    public void checkWithMoveForwardFor2Rovers(){
+        //Arrange
+        Rover rover1 = new Rover("RAGY", plateau, "0:0:N");
+        Rover rover2 = new Rover("DEEPS", plateau, "0:0:E");
+
+        //Act
+        String result1 = rover1.ExecuteMoves("RM");
+        String result2 = rover2.ExecuteMoves("ML");
+
+        //Assert
+        Assertions.assertEquals("1:0:E", result1);
+        Assertions.assertEquals("1:0:N", result2);
+    }
 }

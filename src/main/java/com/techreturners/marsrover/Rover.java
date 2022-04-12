@@ -4,7 +4,6 @@ package com.techreturners.marsrover;
 public class Rover {
 
     private Plateau plateau;
-    private Rover_copy rover;
     public Position position;
     public Direction direction;
 
@@ -46,10 +45,6 @@ public class Rover {
         }
     }
 
-   /* public boolean hasPosition(Position pos) {
-        return position.isEqual(pos);
-    }*/
-
     public void placeRover() {
         String[] initialState = initialPosition.split(":");
         int x = Integer.parseInt(initialState[0]);
@@ -64,21 +59,24 @@ public class Rover {
         //Create Direction object with current direction name 'NORTH';
         direction = new Direction(currentDirectionName);
 
+        //Validate if Rover is within Plateau
         validateLocation();
 
-        System.out.println("Rover size" + plateau.rovers.size());
-
+        //Check if position for rover is already occupied
         if (plateau.isOccupied(position)) {
-            System.out.println("HHH");
             throw new PositionOccupiedException();
         }
 
+        //Add rover to plateau list.
         plateau.addRover(this);
     }
 
     public String ExecuteMoves(String stringCommands){
 
+        //Call placeOrder() to drop rover on the plateau
         placeRover();
+
+        //Execute commands
         char[] commands = stringCommands.toCharArray();
 
         for(char c : commands) {

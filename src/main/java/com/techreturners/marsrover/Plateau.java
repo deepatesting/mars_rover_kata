@@ -37,18 +37,10 @@ public class Plateau {
     }
 
     public boolean isOccupied(Position position) {
-        System.out.println(rovers.size());
         for (Rover r : rovers) {
-            System.out.println(r.getName());
-            System.out.println("X" + r.getPosition().getX());
-            System.out.println("Y" + r.getPosition().getY());
-            System.out.println(r.direction.getDirectionValue());
             if ( (r.getPosition().getX() == position.getX()) &&
                     (r.getPosition().getY() == position.getY()) )
                 return true;
-            /*if (r.hasPosition(position)) {
-                return true;
-            }*/
         }
         return false;
     }

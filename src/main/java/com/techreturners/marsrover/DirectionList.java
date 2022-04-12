@@ -1,7 +1,10 @@
 package com.techreturners.marsrover;
 
 public enum DirectionList {
-        NORTH("N"), EAST("E"), SOUTH("S"), WEST("W");
+        NORTH("N"),
+        EAST("E"),
+        SOUTH("S"),
+        WEST("W");
 
         private String value;
 
