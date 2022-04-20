@@ -6,9 +6,11 @@ public class Rover {
     private Plateau plateau;
     public Position position;
     public Direction direction;
+    private Position finalPosition;
 
     private String name = "";
     private String initialPosition = "";
+
 
     public Rover(String name, Plateau plateau, String initialPosition){
         this.name = name;
@@ -22,6 +24,10 @@ public class Rover {
 
     public Plateau getPlateau() {
         return plateau;
+    }
+
+    public Position getFinalPosition() {
+        return finalPosition;
     }
 
     public Direction getDirection() {
@@ -82,18 +88,40 @@ public class Rover {
         for(char c : commands) {
 
             if ( c == 'M' ) {
+                //Move Forward Position
                 position = direction.moveForward(position);
+
+                //Rover dropped if it reaches Plateau's Upper Boundary position
+                if (position.getX() > plateau.getUpperBoundX()
+                        || position.getY() > plateau.getUpperBoundY()
+                        || position.getX() < plateau.getLowerBoundX()
+                        || position.getY() < plateau.getLowerBoundY()) {
+                    throw new RoverWrapsBackException();
+                }
+
+                //Move Backward Position if rover new position already occupied
+                if(plateau.rovers.size() > 0) {
+                    for (Rover r : plateau.rovers) {
+                        if( (position.getX() == r.getPosition().getX()) &&
+                                (position.getY() == r.getPosition().getY()) && (r.getName() != getName()) )
+                            position = direction.moveBack(position);   //Move Backward Position if rover already occupied
+                    }
+                }
             }
             if (c == 'R') {
+                //Turn Right
                 direction = direction.moveRight();
             }
             if (c == 'L') {
+                //Turn Left
                 direction = direction.moveLeft();
             }
         }
 
         //Get Code by Name - DirectionList - For directions
         DirectionList directionList1 = DirectionList.valueOf(direction.getDirectionValue());
+
+        finalPosition = position;
 
         return (position.getX() + ":" + position.getY() + ":"
                 + directionList1.getValue());

@@ -1,6 +1,7 @@
 package com.techreturners.marsrover;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -43,6 +44,19 @@ public class RoverTest {
         //Assert
         Assertions.assertEquals("Position already occupied by a rover!", e.getMessage());
     }
+
+    @Test
+    public void checkWithMoveForwardUpperBoundaryException(){
+        //Arrange
+        Rover rover = new Rover("RAGY", plateau, "4:5:N");
+
+        //Act
+        Exception e = Assertions.assertThrows(RuntimeException.class, () -> rover.ExecuteMoves("M"));
+
+        //Assert
+        Assertions.assertEquals("Rover can't move out of Plateau Bounds. Rover dropped!!!", e.getMessage());
+    }
+
 
     @ParameterizedTest
     @ValueSource(strings = {"0:0:N",
@@ -173,6 +187,7 @@ public class RoverTest {
         );
     }
 
+
     @Test
     public void checkWithMoveForwardFor2Rovers(){
         //Arrange
@@ -185,6 +200,29 @@ public class RoverTest {
 
         //Assert
         Assertions.assertEquals("1:0:E", result1);
-        Assertions.assertEquals("1:0:N", result2);
+        Assertions.assertEquals("0:0:N", result2);
     }
+
+
+    @Test
+    public void checkWithMoveForwardFor3Rovers(){
+        //Arrange
+        Rover rover1 = new Rover("RAGY", plateau, "0:0:N");
+        Rover rover2 = new Rover("DEEPS", plateau, "0:0:E");
+        Rover rover3 = new Rover("RAMS", plateau, "0:1:E");
+
+        //Act
+        String result1 = rover1.ExecuteMoves("RM");
+        String result2 = rover2.ExecuteMoves("M");
+        String result3 = rover3.ExecuteMoves("M");
+
+        //Assert
+        Assertions.assertEquals("1:0:E", result1);
+        Assertions.assertEquals("0:0:E", result2);
+        Assertions.assertEquals("1:1:E", result3);
+    }
+
+
 }
+
+
