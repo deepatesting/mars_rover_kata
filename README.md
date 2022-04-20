@@ -30,5 +30,6 @@ cd to the project root folder in the command line.
 
 Run ``mvn test``
 
+Find Test Results [Here](https://htmlpreview.github.io/?https://github.com/deepatesting/mars_rover_kata/blob/master/TestResults-RoverTest.html).
 
 
